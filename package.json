@@ -1,6 +1,6 @@
 {
   "name": "nativescript-dev-sass",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "SASS CSS pre-processor for NativeScript projects.",
   "scripts": {
     "test": "exit 0",
