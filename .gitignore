@@ -35,3 +35,4 @@ demo/app/**/*.css
 npm-debug.log
 node_modules
 docs/html
+/.project

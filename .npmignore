@@ -25,6 +25,7 @@ scratch/
 .idea/
 .settings/
 .vscode/
+.project
 test-reports.xml
 
 demo/
