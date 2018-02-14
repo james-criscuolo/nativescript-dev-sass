@@ -9,9 +9,7 @@ var currentSassProcess = null;
 function convert(logger, projectDir, options) {
     return new Promise(function (resolve, reject) {
         options = options || {};
-
-        var peerSassPath = path.join(__dirname, '../../node-sass');
-        var sassPath = path.join(peerSassPath, 'bin/node-sass');
+        var sassPath = require.resolve('node-sass/bin/node-sass');
         var appDir = path.join(projectDir, "app");
         var importerPath = path.join(__dirname, "importer.js");
 
@@ -36,7 +34,9 @@ function convert(logger, projectDir, options) {
         }
 
         logger.trace(process.execPath, nodeArgs.join(' '));
-        currentSassProcess = spawn(process.execPath, nodeArgs);
+        var env = Object.create( process.env );
+        env.PROJECT_DIR = projectDir;
+        currentSassProcess = spawn(process.execPath, nodeArgs, { env: env });
 
         var isResolved = false;
         var watchResolveTimeout;
