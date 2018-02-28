@@ -6,11 +6,10 @@ var fs = require('fs');
 var path = require('path');
 var currentSassProcess = null;
 
-function convert(logger, projectDir, options) {
+function convert(logger, projectDir, appDir, options) {
     return new Promise(function (resolve, reject) {
         options = options || {};
         var sassPath = require.resolve('node-sass/bin/node-sass');
-        var appDir = path.join(projectDir, "app");
         var importerPath = path.join(__dirname, "importer.js");
 
         if (fs.existsSync(sassPath)) {
@@ -36,6 +35,7 @@ function convert(logger, projectDir, options) {
         logger.trace(process.execPath, nodeArgs.join(' '));
         var env = Object.create( process.env );
         env.PROJECT_DIR = projectDir;
+        env.APP_DIR = appDir;
         currentSassProcess = spawn(process.execPath, nodeArgs, { env: env });
 
         var isResolved = false;
