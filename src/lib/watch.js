@@ -9,5 +9,5 @@ module.exports = function (logger, projectData, usbLiveSyncService, hookArgs) {
 		}
 	}
 
-	return converter.convert(logger, projectData.projectDir, { watch: true });
+	return converter.convert(logger, projectData.projectDir, projectData.appDirectoryPath, { watch: true });
 }
