@@ -6,16 +6,17 @@ var fs = require('fs');
 var path = require('path');
 var choki = require('chokidar');
 var watcher = null;
+var watchPromisesChain = Promise.resolve();
 
 function convert(logger, projectDir, appDir, options) {
 	options = options || {};
 	var sassPath = getSassPath();
 	var data = {
-		sassPath: sassPath,
-		projectDir: projectDir,
-		appDir: appDir,
-		logger: logger,
-		options: options
+		sassPath,
+		projectDir,
+		appDir,
+		logger,
+		options
 	};
 	
 	if (options.watch) {
@@ -36,14 +37,14 @@ function createWatcher(data) {
 		cwd: appDir,
 		awaitWriteFinish: {
 			pollInterval: 100,
-			stabilityThreshold: 500
+			stabilityThreshold: 300
 		},
 		ignored: ['**/.*', '.*'] // hidden files
 	};
 	
 	watcher = choki.watch(['**/*.scss', '**/*.sass'], watcherOptions)
 		.on('all', (event, filePath) => {
-			spawnNodeSass(data);
+			watchPromisesChain = watchPromisesChain.then(() => spawnNodeSass(data));
 		});
 }
 
@@ -54,7 +55,7 @@ function getSassPath() {
 			logger.info('Found peer node-sass');
 		} catch (err) { }
 	} else {
-		throw Error('node-sass installation local to project was not found. Install by executing `npm install node-sass`.');
+		throw new Error('node-sass installation local to project was not found. Install by executing `npm install node-sass`.');
 	}
 
 	return sassPath;
@@ -87,7 +88,6 @@ function spawnNodeSass(data) {
 		var currentSassProcess = spawn(process.execPath, nodeArgs, { env: env });
 
 		var isResolved = false;
-		var watchResolveTimeout;
 
 		currentSassProcess.stdout.on('data', function (data) {
 			var stringData = data.toString();
@@ -124,15 +124,9 @@ function spawnNodeSass(data) {
 				if (code === 0) {
 					resolve();
 				} else {
-					reject(Error('SASS compiler failed with exit code ' + code));
+					reject(new Error('SASS compiler failed with exit code ' + code));
 				}
 			}
 		});
-
-		// SASS does not recompile on watch, so directly resolve.
-		if (options.watch && !isResolved) {
-			isResolved = true;
-			resolve();
-		}
 	});
 }
