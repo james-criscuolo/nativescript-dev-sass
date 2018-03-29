@@ -6,14 +6,14 @@
     "test": "exit 0",
     "postinstall": "node postinstall.js",
     "preuninstall": "node preuninstall.js",
-    "demo.ios": "npm run preparedemo && cd demo && tns run ios --emulator",
-    "demo.ios.device": "npm run preparedemo && cd demo && tns run ios",
-    "demo.android": "npm run preparedemo && cd demo && tns run android --emulator",
-    "test.ios": "cd demo && tns test ios --emulator",
-    "test.ios.device": "cd demo && tns test ios",
-    "test.android": "cd demo && tns test android",
-    "preparedemo": "cd demo && npm uninstall nativescript-dev-sass && npm install .. --save-dev && tns install",
-    "setup": "npm i && cd demo && npm i && cd .. && cd demo && npm install .. --save-dev && cd .."
+    "demo.ios": "npm run preparedemo && cd ../demo && tns run ios --emulator",
+    "demo.ios.device": "npm run preparedemo && cd ../demo && tns run ios",
+    "demo.android": "npm run preparedemo && cd ../demo && tns run android --emulator",
+    "test.ios": "cd ../demo && tns test ios --emulator",
+    "test.ios.device": "cd ../demo && tns test ios",
+    "test.android": "cd ../demo && tns test android",
+    "preparedemo": "cd ../demo && npm uninstall nativescript-dev-sass && npm install ../src --save-dev && tns install",
+    "setup": "npm i && cd ../demo && npm i && npm install ../src --save-dev"
   },
   "nativescript": {
     "hooks": [
