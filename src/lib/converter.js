@@ -10,7 +10,7 @@ var watchPromisesChain = Promise.resolve();
 
 function convert(logger, projectDir, appDir, options) {
 	options = options || {};
-	var sassPath = getSassPath();
+	var sassPath = getSassPath(logger);
 	var data = {
 		sassPath,
 		projectDir,
@@ -48,12 +48,10 @@ function createWatcher(data) {
 		});
 }
 
-function getSassPath() {
+function getSassPath(logger) {
 	var sassPath = require.resolve('node-sass/bin/node-sass');
 	if (fs.existsSync(sassPath)) {
-		try {
-			logger.info('Found peer node-sass');
-		} catch (err) { }
+		logger.info('Found peer node-sass');
 	} else {
 		throw new Error('node-sass installation local to project was not found. Install by executing `npm install node-sass`.');
 	}
