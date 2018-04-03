@@ -47,7 +47,7 @@ function createWatcher(data) {
 			watchPromisesChain = watchPromisesChain
 				.then(() => spawnNodeSass(data))
 				.catch(err => {
-					if (err.stopExecution === false && err.errorAsWarning) {
+					if (!err.stopExecution && err.errorAsWarning) {
 						data.logger.warn(err.message);
 					} else {
 						throw err;
