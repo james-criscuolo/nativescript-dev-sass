@@ -44,7 +44,15 @@ function createWatcher(data) {
 	
 	watcher = choki.watch(['**/*.scss', '**/*.sass'], watcherOptions)
 		.on('all', (event, filePath) => {
-			watchPromisesChain = watchPromisesChain.then(() => spawnNodeSass(data));
+			watchPromisesChain = watchPromisesChain
+				.then(() => spawnNodeSass(data))
+				.catch(err => {
+					if (!err.stopExecution && err.errorAsWarning) {
+						data.logger.warn(err.message);
+					} else {
+						throw err;
+					}
+				});
 		});
 }
 
@@ -110,6 +118,8 @@ function spawnNodeSass(data) {
 			logger.info(err.message);
 			if (!isResolved) {
 				isResolved = true;
+				err.errorAsWarning = true;
+				err.stopExecution = false;
 				reject(err);
 			}
 		});
@@ -122,7 +132,10 @@ function spawnNodeSass(data) {
 				if (code === 0) {
 					resolve();
 				} else {
-					reject(new Error('SASS compiler failed with exit code ' + code));
+					var error = new Error('SASS compiler failed with exit code ' + code);
+					error.errorAsWarning = true;
+					error.stopExecution = false;
+					reject(error);
 				}
 			}
 		});
