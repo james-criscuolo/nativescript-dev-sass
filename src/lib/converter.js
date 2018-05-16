@@ -7,11 +7,12 @@ var path = require('path');
 
 var watcherProcess = null;
 
-function convert(logger, projectDir, appDir, options) {
+function convert(logger, projectDir, appDir, appResourcesDir, options) {
 	options = options || {};
 	var data = {
 		projectDir,
 		appDir,
+		appResourcesDir,
 		logger
 	};
 	
@@ -28,7 +29,7 @@ function createWatcher(data) {
 		return;
 	}
 
-	watcherProcess = spawn(process.execPath, [ path.join(__dirname, "./watcher.js"), JSON.stringify({appDir: data.appDir, projectDir: data.projectDir })], { stdio: ["ignore", "ignore", "ignore", "ipc"] });
+	watcherProcess = spawn(process.execPath, [ path.join(__dirname, "./watcher.js"), JSON.stringify({appDir: data.appDir, appResourcesDir: data.appResourcesDir, projectDir: data.projectDir })], { stdio: ["ignore", "ignore", "ignore", "ipc"] });
 	
 	watcherProcess.on('error', error => {
 		throw new Error(error);

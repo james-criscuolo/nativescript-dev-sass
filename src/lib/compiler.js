@@ -22,7 +22,8 @@ function compile(data) {
 		if (fs.existsSync(sassPath)) {
 			logger.info("Found peer node-sass");
 		} else {
-			throw new Error('node-sass installation local to project was not found. Install by executing `npm install node-sass`.');
+			isResolved = true;
+			rej(new Error('node-sass installation local to project was not found. Install by executing `npm install node-sass`.'));
 		}
 
 		var isResolved = false;

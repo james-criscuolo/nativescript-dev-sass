@@ -6,6 +6,7 @@ var LogProvider = require('./log-provider');
 var args = JSON.parse(process.argv[2]);
 var appDir = args.appDir;
 var projectDir = args.projectDir;
+var appResourcesDir = args.appResourcesDir;
 var watchPromisesChain = Promise.resolve();
 
 var watcherOptions = {
@@ -15,7 +16,7 @@ var watcherOptions = {
         pollInterval: 100,
         stabilityThreshold: 300
     },
-    ignored: ['**/.*', '.*', path.join(appDir, "App_Resources")] // hidden files and App_Resources folder
+    ignored: ['**/.*', '.*', appResourcesDir] // hidden files and App_Resources folder
 };
 
 watcher = choki.watch('**/*.s[ac]ss', watcherOptions)

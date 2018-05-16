@@ -20,6 +20,6 @@ module.exports = function(logger) {
             return logger[data.logLevel](data.message);
         }
     
-        process.send(JSON.stringify(data));
+        process.send(data);
     }
 }
