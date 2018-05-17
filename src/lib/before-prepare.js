@@ -8,5 +8,5 @@ module.exports = function ($logger, $projectData, $usbLiveSyncService) {
 		return;
 	}
 	
-	return converter.convert($logger, $projectData.projectDir, $projectData.appDirectoryPath);
+	return converter.convert($logger, $projectData.projectDir, $projectData.appDirectoryPath, $projectData.appResourcesDirectoryPath);
 }
