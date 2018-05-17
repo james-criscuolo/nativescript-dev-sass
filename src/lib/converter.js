@@ -43,7 +43,7 @@ function createWatcher(data) {
 }
 
 function dispose() {
-	if (watcherProcess) {
+	if (watcherProcess && watcherProcess.connected) {
 		watcherProcess.disconnect();
 		watcherProcess = null;
 	}
