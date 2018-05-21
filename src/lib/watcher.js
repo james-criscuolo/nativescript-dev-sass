@@ -10,7 +10,6 @@ var appResourcesDir = args.appResourcesDir;
 var watchPromisesChain = Promise.resolve();
 
 var watcherOptions = {
-    ignoreInitial: true,
     cwd: appDir,
     awaitWriteFinish: {
         pollInterval: 100,
