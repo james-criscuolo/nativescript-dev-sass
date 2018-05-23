@@ -17,8 +17,7 @@ function convert(logger, projectDir, appDir, appResourcesDir, options) {
 	};
 	
 	if (options.watch) {
-		createWatcher(data);
-		return;
+		return createWatcher(data);
 	}
 
 	return sassCompiler.compile(data);
@@ -40,6 +39,8 @@ function createWatcher(data) {
 			data.logger[message.logLevel](message.message);
 		}
 	});
+
+	return sassCompiler.compile(data);
 }
 
 function dispose() {
