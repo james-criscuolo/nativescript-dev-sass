@@ -1,3 +1,7 @@
+## v1.6.0
+- Fixed Ctrl + C not working on Windows
+- Spawn the watcher in a separate process. This resolves several issues with hanging commands.
+
 ## v1.3.0
 - Merged #40 to improve behavior when used with LiveSync (critical for use with Sidekick tooling)
 
