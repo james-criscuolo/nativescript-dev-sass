@@ -5,7 +5,9 @@ This plugin uses the [node-sass compiler](https://www.npmjs.com/package/node-sas
 
 <!-- TOC depthFrom:2 -->
 
-- [How to use](#how-to-use)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Usage](#usage)
 - [LiveSync Support](#livesync-support)
 - [Breaking Changes](#breaking-changes)
 - [SASS @import syntax](#sass-import-syntax)
@@ -15,7 +17,7 @@ This plugin uses the [node-sass compiler](https://www.npmjs.com/package/node-sas
 
 <!-- /TOC -->
 
-## How to use
+## Installation
 
 Add the plug-in to your project:
 ```
@@ -29,6 +31,15 @@ $ npm install nativescript-dev-sass --save-dev
 Either of the above commands installs this module and installs the necessary NativeScript build and LiveSync hooks. SASS CSS pre-processing of all `.scss` or `.sass` files inside the `app` folder happens when the project is prepared for build (including LiveSync, Emulate and Watch commands).
 
 After the plugin runs, it will automatically delete all `.scss` and `.sass` files from the app package (leaving only the compiled `.css`)
+
+## Configuration
+
+No additional configuration required!
+
+## Usage
+
+The best way to explore the usage of the plugin is to inspect the demo apps in the plugin's root folder.
+In `demo` folder you can find the usage of the plugin for JavaScript application. In `demo-angular` folder you can find the usage in an Angular application.
 
 ## LiveSync Support
 
