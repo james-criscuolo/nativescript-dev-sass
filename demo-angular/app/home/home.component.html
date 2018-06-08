@@ -1,0 +1,9 @@
+<ActionBar class="action-bar">
+    <Label class="action-bar-title" text="demo angular"></Label>
+</ActionBar>
+
+<StackLayout class="page">
+    <Label text="Tap the button" class="title"></Label>
+    <Button text="TAP" (tap)="onTap($event)"></Button>
+    <Label [text]="message" class="message" textWrap="true"></Label>
+</StackLayout>

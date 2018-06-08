@@ -1,6 +1,8 @@
 .DS_Store
 
 *.js.map
+*.esm.json
+*.config.js
 
 coverage
 lib-cov
@@ -32,6 +34,14 @@ demo/node_modules
 demo/lib
 demo/hooks
 demo/app/**/*.css
+
+demo-angular/platforms
+demo-angular/node_modules
+demo-angular/lib
+demo-angular/hooks
+demo-angular/app/**/*.css
+demo-angular/**/*.js
+
 npm-debug.log
 node_modules
 docs/html

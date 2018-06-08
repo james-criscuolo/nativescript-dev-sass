@@ -22,11 +22,17 @@ For local development we recommend using the npm commands provided in the plugin
 Basically executing a bunch of commands will be enough for you to start making changes to the plugin and see them live synced in the demo. It's up to you to decide which demo to use for development - TypeScript or TypeScript + Angular.
 
 
-To run and develop using TypeScript demo:
+To run and develop using JavaScript demo:
 ```bash
 $ cd nativescript-dev-sass/src
 $ npm run demo.ios
 $ npm run demo.android
+```
+To run and develop using TypeScript + Angular demo:
+```bash
+$ cd nativescript-dev-sass/src
+$ npm run demo.ng.ios
+$ npm run demo.ng.android
 ```
 
 After all the changes are done make sure to test them in all the demo apps.
