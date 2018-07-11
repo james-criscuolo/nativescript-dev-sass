@@ -16,6 +16,7 @@ var watcherOptions = {
         pollInterval: 100,
         stabilityThreshold: 300
     },
+    followSymlinks: false,
     ignored: ['**/.*', '.*', appResourcesDir] // hidden files and App_Resources folder
 };
 
